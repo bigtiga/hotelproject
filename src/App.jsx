@@ -8,6 +8,8 @@ import Bookings from "./pages/Bookings";
 import ContactUs from "./pages/ContactUs";
 import Aboutus from "./pages/Aboutus";
 import Footer from "./components/Footer";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 
 const App = () => {
   return (
@@ -21,6 +23,9 @@ const App = () => {
         <main style={{ paddingTop: '70px' }}>
           
           <Routes>
+            
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
             
             <Route path="/" element={<HomePage />} />
             <Route path="/rooms" element={<Rooms />} />
