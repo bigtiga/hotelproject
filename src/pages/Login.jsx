@@ -1,10 +1,5 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import {
-  signInWithEmailAndPassword,
-  sendPasswordResetEmail,
-} from "firebase/auth";
-import { auth } from "../firebase/config";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -23,6 +18,7 @@ const Login = () => {
       ...form,
       [e.target.name]: e.target.value,
     });
+
     setError("");
     setMessage("");
   };
@@ -38,64 +34,30 @@ const Login = () => {
       return;
     }
 
-    try {
-      setLoading(true);
+    setLoading(true);
 
-      await signInWithEmailAndPassword(
-        auth,
-        form.email,
-        form.password
-      );
-
-      navigate("/");
-    } catch (error) {
-      console.error(error);
-
-      switch (error.code) {
-        case "auth/invalid-credential":
-          setError("Incorrect email or password.");
-          break;
-
-        case "auth/user-not-found":
-          setError("No account was found with this email.");
-          break;
-
-        case "auth/wrong-password":
-          setError("Incorrect password.");
-          break;
-
-        case "auth/invalid-email":
-          setError("Please enter a valid email address.");
-          break;
-
-        default:
-          setError("Unable to sign in. Please try again.");
-      }
-    } finally {
+    // Temporary front-end login.
+    // Firebase authentication can be connected later.
+    setTimeout(() => {
       setLoading(false);
-    }
+      setMessage("Demo login successful. Welcome back!");
+
+      setTimeout(() => {
+        navigate("/");
+      }, 1000);
+    }, 700);
   };
 
-  const handleForgotPassword = async () => {
+  const handleForgotPassword = () => {
     if (!form.email) {
       setError("Enter your email address first.");
       return;
     }
 
-    try {
-      await sendPasswordResetEmail(auth, form.email);
-
-      setError("");
-      setMessage(
-        "Password reset instructions have been sent to your email."
-      );
-    } catch (error) {
-      console.error(error);
-
-      setError(
-        "Unable to send the password reset email. Please check your email address."
-      );
-    }
+    setError("");
+    setMessage(
+      "Password reset is currently unavailable. Please contact the hotel."
+    );
   };
 
   return (
@@ -116,8 +78,6 @@ const Login = () => {
           maxWidth: "440px",
         }}
       >
-        {/* Header */}
-
         <div
           style={{
             textAlign: "center",
@@ -146,14 +106,14 @@ const Login = () => {
               lineHeight: 1.1,
             }}
           >
-           Log in to{" "}
+            Log in to{" "}
             <span
               style={{
                 color: "var(--accent)",
                 fontStyle: "italic",
               }}
             >
-               Portal.
+              Portal.
             </span>
           </h1>
 
@@ -170,8 +130,6 @@ const Login = () => {
           </p>
         </div>
 
-        {/* Form Card */}
-
         <div
           style={{
             padding: "30px",
@@ -182,8 +140,6 @@ const Login = () => {
           }}
         >
           <form onSubmit={handleSubmit}>
-            {/* Email */}
-
             <div style={{ marginBottom: "20px" }}>
               <label
                 htmlFor="email"
@@ -219,8 +175,6 @@ const Login = () => {
                 }}
               />
             </div>
-
-            {/* Password */}
 
             <div style={{ marginBottom: "10px" }}>
               <label
@@ -258,8 +212,6 @@ const Login = () => {
               />
             </div>
 
-            {/* Forgot password */}
-
             <div
               style={{
                 display: "flex",
@@ -283,8 +235,6 @@ const Login = () => {
               </button>
             </div>
 
-            {/* Error */}
-
             {error && (
               <div
                 style={{
@@ -302,8 +252,6 @@ const Login = () => {
               </div>
             )}
 
-            {/* Success */}
-
             {message && (
               <div
                 style={{
@@ -320,8 +268,6 @@ const Login = () => {
                 {message}
               </div>
             )}
-
-            {/* Submit */}
 
             <button
               type="submit"
@@ -343,8 +289,6 @@ const Login = () => {
               {loading ? "Signing in..." : "Sign In"}
             </button>
           </form>
-
-          {/* Signup */}
 
           <div
             style={{
@@ -369,8 +313,6 @@ const Login = () => {
             </Link>
           </div>
         </div>
-
-        {/* Back */}
 
         <div
           style={{

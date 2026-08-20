@@ -1,11 +1,5 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import {
-  createUserWithEmailAndPassword,
-  updateProfile,
-} from "firebase/auth";
-import { doc, setDoc, serverTimestamp } from "firebase/firestore";
-import { auth, db } from "../firebase/config";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -20,6 +14,7 @@ const Signup = () => {
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [message, setMessage] = useState("");
 
   const handleChange = (e) => {
     setForm({
@@ -28,12 +23,14 @@ const Signup = () => {
     });
 
     setError("");
+    setMessage("");
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     setError("");
+    setMessage("");
 
     if (
       !form.firstName ||
@@ -56,65 +53,20 @@ const Signup = () => {
       return;
     }
 
-    try {
-      setLoading(true);
+    setLoading(true);
 
-      const userCredential =
-        await createUserWithEmailAndPassword(
-          auth,
-          form.email,
-          form.password
-        );
-
-      const user = userCredential.user;
-
-      const fullName = `${form.firstName} ${form.lastName}`;
-
-      // Update Firebase Auth profile
-      await updateProfile(user, {
-        displayName: fullName,
-      });
-
-      // Create user profile in Firestore
-      await setDoc(doc(db, "users", user.uid), {
-        uid: user.uid,
-        firstName: form.firstName,
-        lastName: form.lastName,
-        name: fullName,
-        email: user.email,
-        role: "guest",
-        createdAt: serverTimestamp(),
-      });
-
-      navigate("/");
-    } catch (error) {
-      console.error(error);
-
-      switch (error.code) {
-        case "auth/email-already-in-use":
-          setError(
-            "An account already exists with this email address."
-          );
-          break;
-
-        case "auth/invalid-email":
-          setError("Please enter a valid email address.");
-          break;
-
-        case "auth/weak-password":
-          setError(
-            "Your password is too weak. Please choose a stronger password."
-          );
-          break;
-
-        default:
-          setError(
-            "Unable to create your account. Please try again."
-          );
-      }
-    } finally {
+    // Temporary front-end signup.
+    // Firebase authentication can be connected later.
+    setTimeout(() => {
       setLoading(false);
-    }
+      setMessage(
+        `Welcome ${form.firstName}! Your demo account has been created.`
+      );
+
+      setTimeout(() => {
+        navigate("/");
+      }, 1200);
+    }, 700);
   };
 
   return (
@@ -135,8 +87,6 @@ const Signup = () => {
           maxWidth: "480px",
         }}
       >
-        {/* Header */}
-
         <div
           style={{
             textAlign: "center",
@@ -189,8 +139,6 @@ const Signup = () => {
           </p>
         </div>
 
-        {/* Card */}
-
         <div
           style={{
             padding: "30px",
@@ -201,8 +149,6 @@ const Signup = () => {
           }}
         >
           <form onSubmit={handleSubmit}>
-            {/* Name row */}
-
             <div
               style={{
                 display: "grid",
@@ -282,8 +228,6 @@ const Signup = () => {
               </div>
             </div>
 
-            {/* Email */}
-
             <div style={{ marginBottom: "20px" }}>
               <label
                 htmlFor="email"
@@ -318,8 +262,6 @@ const Signup = () => {
                 }}
               />
             </div>
-
-            {/* Password */}
 
             <div style={{ marginBottom: "20px" }}>
               <label
@@ -356,8 +298,6 @@ const Signup = () => {
               />
             </div>
 
-            {/* Confirm */}
-
             <div style={{ marginBottom: "22px" }}>
               <label
                 htmlFor="confirmPassword"
@@ -393,8 +333,6 @@ const Signup = () => {
               />
             </div>
 
-            {/* Error */}
-
             {error && (
               <div
                 style={{
@@ -412,7 +350,22 @@ const Signup = () => {
               </div>
             )}
 
-            {/* Submit */}
+            {message && (
+              <div
+                style={{
+                  marginBottom: "18px",
+                  padding: "12px 14px",
+                  borderRadius: "8px",
+                  background: "rgba(76, 175, 80, 0.08)",
+                  border: "1px solid rgba(76, 175, 80, 0.2)",
+                  color: "#69b86d",
+                  fontSize: "13px",
+                  lineHeight: 1.5,
+                }}
+              >
+                {message}
+              </div>
+            )}
 
             <button
               type="submit"
@@ -431,13 +384,9 @@ const Signup = () => {
                 cursor: loading ? "not-allowed" : "pointer",
               }}
             >
-              {loading
-                ? "Creating account..."
-                : "Create Account"}
+              {loading ? "Creating account..." : "Create Account"}
             </button>
           </form>
-
-          {/* Login */}
 
           <div
             style={{
@@ -462,8 +411,6 @@ const Signup = () => {
             </Link>
           </div>
         </div>
-
-        {/* Back */}
 
         <div
           style={{
