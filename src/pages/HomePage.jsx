@@ -548,7 +548,7 @@ const HomePage = () => {
                   fontStyle: "italic",
                 }}
               >
-                AI Concierge.
+                 Concierge.
               </span>
             </h2>
 
@@ -665,7 +665,7 @@ const HomePage = () => {
                       fontWeight: 600,
                     }}
                   >
-                    AI-Assisted Booking
+                    Assisted Booking with concierge
                   </h3>
 
                   <p
@@ -676,7 +676,7 @@ const HomePage = () => {
                       lineHeight: 1.6,
                     }}
                   >
-                    Let your AI concierge guide you through the booking
+                    Let your concierge guide you through the booking
                     process.
                   </p>
                 </div>
@@ -813,7 +813,7 @@ const HomePage = () => {
                       fontWeight: 600,
                     }}
                   >
-                    AI Concierge
+                    Concierge
                   </div>
 
                   <div
@@ -1176,7 +1176,7 @@ const HomePage = () => {
                   lineHeight: 1.7,
                 }}
               >
-                AI-assisted booking helps you discover the right room and
+                Concierge booking helps you discover the right room and
                 plan your stay with ease.
               </p>
             </div>

@@ -225,7 +225,9 @@ const Navbar = () => {
                 >
                   {link.label}
                 </Link>
+
               </li>
+              
             ))}
           </ul>
 
@@ -249,50 +251,11 @@ const Navbar = () => {
                 listStyle: "none",
                 margin: 0,
                 padding: 0,
-              }}
-            >
-              {authLinks.map((link) => (
-                <li key={link.id}>
-                  <Link
-                    to={link.path}
-                    className={
-                      link.isLogout
-                        ? "logout-link"
-                        : link.isPrimary
-                        ? "primary-link"
-                        : "nav-link"
-                    }
-                    style={{
-                      display: "block",
-                      marginLeft: "0px",
-                      padding: link.isPrimary ? "8px 20px" : "8px 12px",
-                      color: link.isLogout
-                        ? "#e74c3c"
-                        : link.isPrimary
-                        ? "#ffffff"
-                        : "var(--text-secondary)",
-                      fontSize: "14px",
-                      fontWeight: link.isPrimary ? 600 : 500,
-                      borderRadius: "8px",
-                      background: link.isPrimary
-                        ? "var(--accent)"
-                        : link.isLogout
-                        ? "transparent"
-                        : "transparent",
-                      border: link.isPrimary
-                        ? "none"
-                        : link.isLogout
-                        ? "1px solid #e74c3c"
-                        : "1px solid var(--border-color)",
-                    }}
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
+              }}>
+                 <ThemeToggle />
             </ul>
 
-            <ThemeToggle />
+         
 
             <button
               className="hamburger-btn"

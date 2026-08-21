@@ -7,9 +7,9 @@ const Rooms = () => {
 
   const rooms = [
     {
-      id: "standard",
-      name: "Standard Room",
-      price: 12000,
+      id: "studio",
+      name: "Studio Room",
+      price: 30000,
       description:
         "A comfortable and thoughtfully designed room with everything you need for a relaxing stay.",
       features: [
@@ -27,11 +27,11 @@ const Rooms = () => {
     },
 
     {
-      id: "deluxe",
-      name: "Deluxe Room",
-      price: 19000,
+      id: "standard",
+      name: "Standard Room",
+      price: 36000,
       description:
-        "Enjoy a little more space and comfort in our Deluxe Room, ideal for business or leisure stays.",
+        "Enjoy a little more space and comfort in our standard Room, ideal for business or leisure stays.",
       features: [
         "Spacious room",
         "Premium bedding",
@@ -46,11 +46,11 @@ const Rooms = () => {
     },
 
     {
-      id: "suite",
-      name: "Executive Suite",
-      price: 29000,
+      id: "Deluxe",
+      name: "Deluxe Suite",
+      price: 38000,
       description:
-        "A refined suite offering additional living space and an elevated level of comfort for your stay.",
+        "A refined deluxe suite offering additional living space and an elevated level of comfort for your stay.",
       features: [
         "Separate living area",
         "Premium bedding",
@@ -66,11 +66,11 @@ const Rooms = () => {
     },
 
     {
-      id: "presidential",
-      name: "Presidential Suite",
-      price: 49000,
+      id: "Executive",
+      name: "Executive Suite",
+      price: 42000,
       description:
-        "Our most luxurious accommodation, designed for guests looking for space, privacy and an exceptional stay.",
+        "Our executive suite is designed for guests looking for space, privacy and an exceptional stay.",
       features: [
         "Luxury bedroom",
         "Separate living room",

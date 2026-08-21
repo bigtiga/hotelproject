@@ -12,7 +12,7 @@ const AIChat = () => {
     {
       id: 2,
       sender: "ai",
-      text: "I'm your AI Concierge. How can I help you today?",
+      text: "I'm your Concierge. How can I help you today?",
     },
   ]);
 
@@ -424,7 +424,7 @@ const AIChat = () => {
 
               <div>
                 <div className="ai-chat-name">
-                  Waje AI Concierge
+                  Waje Concierge
                 </div>
 
                 <div className="ai-chat-status">
@@ -504,7 +504,7 @@ const AIChat = () => {
         >
           <span className="ai-floating-icon">✦</span>
 
-          <span>Ask AI Concierge</span>
+          <span>Ask Concierge</span>
         </button>
       )}
     </>
