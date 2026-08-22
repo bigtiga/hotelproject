@@ -397,41 +397,8 @@ const Navbar = () => {
               gap: "4px",
               borderTop: "1px solid var(--border-color)",
               paddingTop: "12px",
-            }}
-          >
-            {authLinks.map((link) => (
-              <li key={link.id}>
-                <Link
-                  to={link.path}
-                  onClick={closeMenu}
-                  style={{
-                    display: "block",
-                    padding: "12px 16px",
-                    color: link.isLogout
-                      ? "#e74c3c"
-                      : link.isPrimary
-                      ? "#ffffff"
-                      : "var(--text-secondary)",
-                    fontSize: "16px",
-                    fontWeight: link.isPrimary ? 600 : 500,
-                    borderRadius: "8px",
-                    background: link.isPrimary
-                      ? "var(--accent)"
-                      : link.isLogout
-                      ? "transparent"
-                      : "transparent",
-                    textAlign: "center",
-                    border: link.isPrimary
-                      ? "none"
-                      : link.isLogout
-                      ? "1px solid #e74c3c"
-                      : "1px solid var(--border-color)",
-                  }}
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
+            }}>
+            
           </ul>
         </div>
       </nav>
